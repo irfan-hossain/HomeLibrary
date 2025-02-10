@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Entry App</title>
+    <style>
+        body { 
+            font-family: Helvetica, sans-serif; 
+            background-color: #012622; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+        }
+
+        .container-wrapper {
+            display: flex;
+            gap: 20px; /* Space between form and catalog */
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .container {
+            background: #788585; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1;
+        }
+
+        .book-list-container {
+            background: #788585; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            max-height: 400px;
+            overflow-y: auto; /* Makes the catalog scrollable */
+        }
+
+        h1, h2 { text-align: center; color: white; }
+        input { width: 90%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; display: block; text-align: center; }
+        button { background-color: #9CAEA9; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; font-size: 16px; border-radius: 5px; margin-top: 10px; }
+        button:hover { background-color: #CCDAD1; }
+        .book-list { list-style: none; padding: 0; }
+        .book-list li { background: #fff; padding: 10px; margin: 5px; border-radius: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); }
+    </style>
+</head>
+<body>
+
+    <div class="container-wrapper">
+        <!-- Book Entry Form -->
+        <div class="container">
+            <h1>📚 Add a Book</h1>
+            <input type="text" id="title" placeholder="Enter Book Title">
+            <input type="text" id="author" placeholder="Enter Author Name">
+            <button onclick="submitBook();ClearFields();">Add Book</button>
+        </div>
+
+        <!-- Book Catalog -->
+        <div class="book-list-container">
+            <h2>📖 Book Catalog</h2>
+            <ul id="book-list" class="book-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        function submitBook() {
+            let title = document.getElementById("title").value;
+            let author = document.getElementById("author").value;
+
+            if (title && author) {
+                let bookData = JSON.stringify({ title: title, author: author });
+
+                // Send book data to Python and update book list after response
+                pywebview.api.AddBookToTableInJsonFormat(bookData).then(updateBookList);
+            } else {
+                alert("Please enter both Title and Author.");
+            }
+        }
+
+        function updateBookList(bookList) {
+            let listElement = document.getElementById("book-list");
+            listElement.innerHTML = "";
+
+            JSON.parse(bookList).forEach(book => {
+                let li = document.createElement("li");
+                li.textContent = `📖 ${book.title} by ${book.author}`;
+                listElement.appendChild(li);
+            });
+        }
+
+        function ClearFields() {
+
+            document.getElementById("title").value = "";
+            document.getElementById("author").value = "";
+       }
+
+        // Load books from database when UI loads
+        window.onload = function() {
+            pywebview.api.GetListofBooksInJsonFormat().then(updateBookList);
+        };
+    </script>
+
+</body>
+</html>
