@@ -57,6 +57,7 @@
             <input type="text" id="title" placeholder="Enter Book Title">
             <input type="text" id="author" placeholder="Enter Author Name">
             <button onclick="submitBook();ClearFields();">Add Book</button>
+            <button onclick="removeBook();ClearFields();">Remove Book</button>
         </div>
 
         <!-- Book Catalog -->
@@ -75,9 +76,22 @@
                 let bookData = JSON.stringify({ title: title, author: author });
 
                 // Send book data to Python and update book list after response
-                pywebview.api.AddBookToTableInJsonFormat(bookData).then(updateBookList);
+                pywebview.api.AddBookToTableJs(bookData).then(updateBookList);
             } else {
                 alert("Please enter both Title and Author.");
+            }
+        }
+
+        function removeBook() {
+            let title = document.getElementById("title").value;
+
+            if (title) {
+                let bookData = JSON.stringify({ title: title });
+
+                // Send book data to Python and update book list after response
+                pywebview.api.RemoveBookFromTableJs(bookData).then(updateBookList);
+            } else {
+                alert("Please enter Title");
             }
         }
 
@@ -100,7 +114,7 @@
 
         // Load books from database when UI loads
         window.onload = function() {
-            pywebview.api.GetListofBooksInJsonFormat().then(updateBookList);
+            pywebview.api.GetListofBooksJs().then(updateBookList);
         };
     </script>
 
