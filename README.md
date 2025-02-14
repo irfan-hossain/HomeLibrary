@@ -8,6 +8,7 @@ This appliction is intended to be used to keep track of a home library. Books ca
 </p>
 
 # Feature Requirements
+## Book Attributes 
 Each book shall have the following attributes:
 - Title
 - Author 
@@ -16,9 +17,15 @@ Each book shall have the following attributes:
 - Rating (Scale of 1-5)
 - IsRead (True or False)
 
+## Program Functionality
 The following actions can be done to the library:
 - Add a Book
 - Remove a Book
 - Edit a Book
 - Search for a Book
 - View the library as a table, rows sortable by book attributes.
+
+## UI Prototype
+<p align="center">
+  <img src="docs\UI_Prototype.drawio.png" />
+</p>

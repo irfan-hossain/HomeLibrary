@@ -1,0 +1,224 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.9 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.9">
+  <diagram name="Page-1" id="CT030LC6nVq35u1Br7LH">
+    <mxGraphModel dx="1530" dy="933" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CUPG3jFCVzWfbordO-YE-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="165" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-3" value="Welcome to Wafiq&#39;s Library" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-4" target="CUPG3jFCVzWfbordO-YE-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-26" value="Book is NOT Found" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CUPG3jFCVzWfbordO-YE-24">
+          <mxGeometry x="0.4335" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-4" value="Search" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="200" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-10" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.006;entryY=0.606;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-4" target="CUPG3jFCVzWfbordO-YE-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-25" value="Book is Found" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CUPG3jFCVzWfbordO-YE-14">
+          <mxGeometry x="0.0707" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-15" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="620" y="130" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-16" value="Rating" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="620" y="160" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-17" value="Date Read" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="620" y="190" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-18" value="Read?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="130" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-19" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="560" y="360" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-23" value="Book is not in Library" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="460" width="360" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-35" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="680" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-36" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="805" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-37" value="Welcome to Wafiq&#39;s Library" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="80" y="760" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-38" value="Search" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="840" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-40" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="50" y="690" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-41" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="560" y="680" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-42" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="805" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-43" value="Welcome to Wafiq&#39;s Library" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="600" y="760" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-44" value="Search" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="840" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-46" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="560" y="680" width="140" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.005;entryY=0.093;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-40" target="CUPG3jFCVzWfbordO-YE-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-48" value="List View" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="690" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.002;entryY=0.603;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-49">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1079.9999999999998" y="1130" as="targetPoint" />
+            <mxPoint x="569.04" y="691.16" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="529" y="730" />
+              <mxPoint x="529" y="1130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-49" value="Add Book" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="720" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-128" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-50" target="CUPG3jFCVzWfbordO-YE-81">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1079.9999999999998" y="1491.5384615384614" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-50" value="Remove Book" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="750" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-52" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="680" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-60" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="700" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-61" value="A" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="700" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-62" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="730" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-63" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="760" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-64" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="790" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-65" value="B" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="830" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-66" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="830" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-67" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="860" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-68" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="890" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.003;entryY=0.071;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-48" target="CUPG3jFCVzWfbordO-YE-52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-70" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="1000" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-81" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="1320" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-93" value="" style="rounded=1;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="1020" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-96" value="Title" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1070" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-97" value="Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1100" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-98" value="Read" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1130" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-99" value="Rating" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1160" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-100" value="Date Read" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1190" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-102" value="Enter Information" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1155" y="1030" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-103" target="CUPG3jFCVzWfbordO-YE-104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-103" value="SUBMIT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1220" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-104" value="" style="rounded=1;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="1020" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-105" value="List of Books Added" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1375" y="1030" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-106" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="1070" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-107" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="1100" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-108" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="1130" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-109" value="Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="1160" width="170" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-112" value="" style="rounded=1;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="1340" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-113" value="Title" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1435" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-118" value="Enter Information" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1155" y="1350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-130" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="CUPG3jFCVzWfbordO-YE-120" target="CUPG3jFCVzWfbordO-YE-124">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-120" value="SUBMIT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="1465" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-121" value="" style="rounded=1;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="1340" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-124" value="&lt;div&gt;Deleted:&lt;/div&gt;Title by Author" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1345" y="1430" width="170" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="CUPG3jFCVzWfbordO-YE-129" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
