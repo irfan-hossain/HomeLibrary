@@ -1,6 +1,6 @@
 import sqlite3
-import json
 import webview
+import json 
 
 BOOK_TABLE_TITLE_COL_INDEX       = 0
 BOOK_TABLE_AUTHOR_COL_INDEX      = 1
@@ -73,7 +73,7 @@ class HomeLibraryApi:
         # Convert the book data in JSON format to a python dictionary
         BookDictData = json.loads (BookJsonData)
         
-        # Add to Book Table
+        # Remove Book From Table
         Title = str(BookDictData['title'])
         self.RemoveBookFromTable (Title)
         
@@ -91,8 +91,32 @@ class HomeLibraryApi:
         # Re-Format List to JSON
         return json.dumps(books)  # Send book list to frontend               
 
+    def SearchJs (self, BookJsonData):
+        # Convert the book data in JSON format to a python dictionary
+        BookDictData = json.loads (BookJsonData)
+
+        # Add to Book Table
+        BookTitle = BookDictData['title']
+        
+        # Query for Book Data
+        self.DbCursor.execute("SELECT title, author FROM book")
+        
+        # Organize table into python list of dicts
+        Books = [{"title": row[BOOK_TABLE_TITLE_COL_INDEX], "author": row[BOOK_TABLE_AUTHOR_COL_INDEX]} for row in self.DbCursor.fetchall()]
+        
+        # Search for book data based on title.
+        Result = None
+        for book in Books:
+            if book['title'] == BookTitle:
+                print ("found", BookTitle)
+                Result = [book]
+                break;
+
+        # Return book data as only element in list
+        return json.dumps(Result)  # Send book list to frontend     
+                
 if __name__ == "__main__":
-    # Instantiate Backend API Class
+    # # Instantiate Backend API Class
     LibraryFrontend = HomeLibraryApi ()
     LibraryFrontend.CreateBookTable ()
     

@@ -56,8 +56,10 @@
             <h1>📚 Add a Book</h1>
             <input type="text" id="title" placeholder="Enter Book Title">
             <input type="text" id="author" placeholder="Enter Author Name">
-            <button onclick="submitBook();ClearFields();">Add Book</button>
-            <button onclick="removeBook();ClearFields();">Remove Book</button>
+            <button onclick="SubmitBook();ClearFields();">Add Book</button>
+            <button onclick="RemoveBook();ClearFields();">Remove Book</button>
+            <button onclick="(RefreshList());ClearFields();">Refresh</button>
+            <button onclick="(SearchForBook());ClearFields();">Search</button>
         </div>
 
         <!-- Book Catalog -->
@@ -68,34 +70,30 @@
     </div>
 
     <script>
-        function submitBook() {
+        function SubmitBook() {
             let title = document.getElementById("title").value;
             let author = document.getElementById("author").value;
 
             if (title && author) {
                 let bookData = JSON.stringify({ title: title, author: author });
-
-                // Send book data to Python and update book list after response
-                pywebview.api.AddBookToTableJs(bookData).then(updateBookList);
+                pywebview.api.AddBookToTableJs(bookData).then(UpdateBookList);
             } else {
                 alert("Please enter both Title and Author.");
             }
         }
 
-        function removeBook() {
+        function RemoveBook() {
             let title = document.getElementById("title").value;
 
             if (title) {
                 let bookData = JSON.stringify({ title: title });
-
-                // Send book data to Python and update book list after response
-                pywebview.api.RemoveBookFromTableJs(bookData).then(updateBookList);
+                pywebview.api.RemoveBookFromTableJs(bookData).then(UpdateBookList);
             } else {
                 alert("Please enter Title");
             }
         }
 
-        function updateBookList(bookList) {
+        function UpdateBookList(bookList) {
             let listElement = document.getElementById("book-list");
             listElement.innerHTML = "";
 
@@ -107,14 +105,23 @@
         }
 
         function ClearFields() {
-
             document.getElementById("title").value = "";
             document.getElementById("author").value = "";
        }
 
+       function RefreshList (){
+        pywebview.api.GetListofBooksJs().then(UpdateBookList);
+       }
+
+       function SearchForBook (){
+        let title = document.getElementById("title").value;
+        let bookData = JSON.stringify({ title: title });
+        pywebview.api.SearchJs(bookData).then(UpdateBookList);
+       }
+
         // Load books from database when UI loads
         window.onload = function() {
-            pywebview.api.GetListofBooksJs().then(updateBookList);
+            pywebview.api.GetListofBooksJs().then(UpdateBookList);
         };
     </script>
 
