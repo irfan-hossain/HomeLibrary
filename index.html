@@ -18,19 +18,30 @@
             overflow-x: hidden; /* Disable horizontal scroll */
             padding-top: 20px;
         }
-    
-        /* Style page content */
+
         .main {
             margin-left: 326px; /* Same as the width of the sidebar */
-            padding: 0px 10px;
+            background-color: #ffffff; 
+            height: 100%;
+            width: 100%;
         }
-    
-        /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-        @media screen and (max-height: 450px) {
-            .sidenav {padding-top: 15px;}
-            .sidenav a {font-size: 18px;}
+        
+        .search-bar-container {
+            background-color: #ffffff; 
+            height: 20%;
+            width: 100%;
+            display: flex; 
+            justify-content: left;
         }
-          
+
+        .book-table-cotainer {
+            background-color: #ffffff; 
+            height: 100%;
+            width: 100%;
+            display: flex; 
+            justify-content: center;
+        }
+
         body { 
             font-family: Inter, sans-serif; 
             background-color: #ffffff; 
@@ -41,15 +52,37 @@
             height: 100vh;
         }
 
-        h1, h2 { text-align: center; color: white; font-size: 14px; padding: 20px; } 
+        h1 { text-align: center; 
+            color: white; 
+            font-size: 14px; 
+            padding: 20px; 
+            margin-bottom: 60px;
+        } 
+
         input { 
             width: 80%; 
             padding: 8px; 
             border: 1px solid #ccc; 
             display: block; 
-            text-align: center; 
+            text-align: left; 
             margin: auto; 
         }
+
+        search-button { 
+            width: 10%; 
+            padding: 8px; 
+            border: 1px solid #9CAEA9; 
+            display: block;
+            text-align: center; 
+            margin: auto;
+            
+            background-color: #9CAEA9; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 12px; 
+
+        }
+        search-button:hover { background-color: #CCDAD1; }
 
         add-button { 
             width: 80%; 
@@ -83,8 +116,10 @@
             font-size: 14px; 
 
         }
-        delete-button:hover { background-color: #CCDAD1; }
+        delete-button:hover { background-color: #988787; }
 
+        .book-list { list-style: none; padding: 10;}
+        .book-list li { background: #fff; padding: 10px; margin: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);}
     </style>
 
 </head>
@@ -94,12 +129,23 @@
         <h1>W E L C O M E &nbsp; T O &nbsp; Y O U R <br>  H O M E &nbsp; L I B R A R Y</h1>
         <input type="text" id="title" placeholder="Enter Book Title">
         <input type="text" id="author" placeholder="Enter Author Name">
-        <input type="text" id="genre" placeholder="Enter Genre">
-        <input type="text" id="dateread" placeholder="Enter Date Read">
-        <add-button onclick="SubmitBook();ClearFields();">Add Book</add-button>    
-        <delete-button onclick="SubmitBook();ClearFields();">Remove Book</delete-button>   
+        <input type="text" id="genre" placeholder="DISABLED - Enter Genre" disabled>
+        <input type="text" id="dateread" placeholder="DISABLED - Enter Date Read" disabled>
+        
+        <add-button onclick="SubmitBook();ClearFields();">Add Book</add-button> 
+        <delete-button onclick="RemoveBook();ClearFields();">Remove Book</delete-button>   
     </div>
     
+    <div class="main">
+        <div class="search-bar-container">
+            <input type="text" id="search-bar" placeholder="Enter book information to search...">
+            <search-button onclick="SearchForBook();ClearFields();">Go</search-button>    
+        </div>
+
+        <div class="book-table-cotainer">
+            <ul id="book-list" class="book-list"></ul>
+        </div>
+    </div>
 
     <script>
         function SubmitBook() {
@@ -128,10 +174,12 @@
         function UpdateBookList(bookList) {
             let listElement = document.getElementById("book-list");
             listElement.innerHTML = "";
-
+            
             JSON.parse(bookList).forEach(book => {
                 let li = document.createElement("li");
-                li.textContent = `📖 ${book.title} by ${book.author}`;
+                li.setAttribute('style', 'white-space: pre;');
+                li.textContent = `📖 ${book.title} \r\n`;
+                li.textContent += `✍️ ${book.author}\r\n`;
                 listElement.appendChild(li);
             });
         }
@@ -146,15 +194,19 @@
        }
 
        function SearchForBook (){
-        let title = document.getElementById("title").value;
+        let title = document.getElementById("search-bar").value;
         let bookData = JSON.stringify({ title: title });
         pywebview.api.SearchJs(bookData).then(UpdateBookList);
        }
 
         // Load books from database when UI loads
-        window.onload = function() {
-            pywebview.api.GetListofBooksJs().then(UpdateBookList);
-        };
+        window.setTimeout (
+            function() {
+                pywebview.api.GetListofBooksJs().then(UpdateBookList);
+            }, 
+            100)
+        ;
+
     </script>
 
 </body>
