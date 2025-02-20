@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Entry App</title>
+    <title>Home Library Catalog</title>
     <style>
+
+        .sidenav {
+            height: 100%; /* Full-height: remove this if you want "auto" height */
+            width: 326px; /* Set the width of the sidebar */
+            position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
+            left: 0;
+            background-color: #9CAEA9; /* Black */
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+    
+        /* Style page content */
+        .main {
+            margin-left: 326px; /* Same as the width of the sidebar */
+            padding: 0px 10px;
+        }
+    
+        /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+          
         body { 
-            font-family: Helvetica, sans-serif; 
-            background-color: #012622; 
+            font-family: Inter, sans-serif; 
+            background-color: #ffffff; 
             padding: 20px; 
             display: flex; 
             justify-content: center; 
@@ -15,59 +41,65 @@
             height: 100vh;
         }
 
-        .container-wrapper {
-            display: flex;
-            gap: 20px; /* Space between form and catalog */
-            max-width: 800px;
-            width: 100%;
+        h1, h2 { text-align: center; color: white; font-size: 14px; padding: 20px; } 
+        input { 
+            width: 80%; 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            display: block; 
+            text-align: center; 
+            margin: auto; 
         }
 
-        .container {
-            background: #788585; 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            flex: 1;
-        }
+        add-button { 
+            width: 80%; 
+            padding: 8px; 
+            border: 1px solid #ffffff; 
+            display: block;
+            text-align: center; 
+            margin: auto; 
+            
+            margin-top: 10px;
+            background-color: #9CAEA9; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 14px; 
 
-        .book-list-container {
-            background: #788585; 
-            padding: 20px; 
-            border-radius: 10px; 
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            flex: 1;
-            max-height: 400px;
-            overflow-y: auto; /* Makes the catalog scrollable */
         }
+        add-button:hover { background-color: #CCDAD1; }
 
-        h1, h2 { text-align: center; color: white; }
-        input { width: 90%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; display: block; text-align: center; }
-        button { background-color: #9CAEA9; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; font-size: 16px; border-radius: 5px; margin-top: 10px; }
-        button:hover { background-color: #CCDAD1; }
-        .book-list { list-style: none; padding: 0; }
-        .book-list li { background: #fff; padding: 10px; margin: 5px; border-radius: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); }
+        delete-button { 
+            width: 80%; 
+            padding: 8px; 
+            border: 1px solid #ffffff; 
+            display: block;
+            text-align: center; 
+            margin: auto; 
+            
+            margin-top: 10px;
+            background-color: #AE9C9C; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 14px; 
+
+        }
+        delete-button:hover { background-color: #CCDAD1; }
+
     </style>
+
 </head>
+
 <body>
-
-    <div class="container-wrapper">
-        <!-- Book Entry Form -->
-        <div class="container">
-            <h1>📚 Add a Book</h1>
-            <input type="text" id="title" placeholder="Enter Book Title">
-            <input type="text" id="author" placeholder="Enter Author Name">
-            <button onclick="SubmitBook();ClearFields();">Add Book</button>
-            <button onclick="RemoveBook();ClearFields();">Remove Book</button>
-            <button onclick="(RefreshList());ClearFields();">Refresh</button>
-            <button onclick="(SearchForBook());ClearFields();">Search</button>
-        </div>
-
-        <!-- Book Catalog -->
-        <div class="book-list-container">
-            <h2>📖 Book Catalog</h2>
-            <ul id="book-list" class="book-list"></ul>
-        </div>
+    <div class="sidenav">
+        <h1>W E L C O M E &nbsp; T O &nbsp; Y O U R <br>  H O M E &nbsp; L I B R A R Y</h1>
+        <input type="text" id="title" placeholder="Enter Book Title">
+        <input type="text" id="author" placeholder="Enter Author Name">
+        <input type="text" id="genre" placeholder="Enter Genre">
+        <input type="text" id="dateread" placeholder="Enter Date Read">
+        <add-button onclick="SubmitBook();ClearFields();">Add Book</add-button>    
+        <delete-button onclick="SubmitBook();ClearFields();">Remove Book</delete-button>   
     </div>
+    
 
     <script>
         function SubmitBook() {

@@ -27,5 +27,5 @@ The following actions can be done to the library:
 
 ## UI Prototype
 <p align="center">
-  <img src="docs\UI_Prototype.drawio.png" />
+  <img src="docs\HomeLibrary.png" />
 </p>
