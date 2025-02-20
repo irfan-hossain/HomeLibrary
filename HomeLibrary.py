@@ -4,6 +4,10 @@ import json
 
 BOOK_TABLE_TITLE_COL_INDEX       = 0
 BOOK_TABLE_AUTHOR_COL_INDEX      = 1
+BOOK_TABLE_GENRE_COL_INDEX       = 2
+BOOK_TABLE_IS_READ_COL_INDEX     = 3
+BOOK_TABLE_DATE_READ_COL_INDEX   = 4
+BOOK_TABLE_RATING_COL_INDEX      = 5
 
 class HomeLibraryApi: 
     #
@@ -25,24 +29,19 @@ class HomeLibraryApi:
     # Python Backend Library Methods
     #
     def CreateBookTable (self):
-        self.DbCursor.execute ("CREATE TABLE IF NOT EXISTS Book(Title TEXT, Author TEXT)")
+        self.DbCursor.execute ("CREATE TABLE IF NOT EXISTS Book(Title TEXT, Author TEXT, Genre TEXT, IsRead TEXT, DateRead TEXT, Rating TEXT)")
         self.DbConnection.commit ()
         return
     
-    def DeleteTable (self):
-        self.DbCursor.execute("delete from " + "book");
-        return
-    
-    def AddBookToTable (self, Title, Author):
+    def AddBookToTable (self, Title, Author, Genre, IsRead, DateRead, Rating):
         query = ("""
         INSERT INTO book VALUES
-            (?, ?)
+            (?, ?, ?, ?, ?, ?)
         """)
         
-        self.DbCursor.execute (query, (Title, Author))
+        self.DbCursor.execute (query, (Title, Author, Genre, IsRead, DateRead, Rating))
         self.DbConnection.commit()
         
-        print ("Added", f'"{Title}"', "by", Author)
         return
         
     def RemoveBookFromTable (self, Title):
@@ -63,7 +62,14 @@ class HomeLibraryApi:
         BookDictData = json.loads (BookJsonData)
 
         # Add to Book Table
-        self.AddBookToTable (BookDictData['title'], BookDictData['author'])
+        self.AddBookToTable (
+            BookDictData['title'], 
+            BookDictData['author'], 
+            BookDictData['genre'], 
+            BookDictData['isread'],
+            BookDictData['dateread'],
+            BookDictData['rating']
+        )
         
         # Return the latest list of books to frontend
         JsonDumpOfBooks = self.GetListofBooksJs ()
@@ -83,13 +89,21 @@ class HomeLibraryApi:
 
     def GetListofBooksJs (self):
         # Query for Book Data
-        self.DbCursor.execute("SELECT title, author FROM book")
+        self.DbCursor.execute("SELECT title, author, genre, isread, dateread, rating FROM book")
         
         # Organize table into python list of dicts
-        books = [{"title": row[BOOK_TABLE_TITLE_COL_INDEX], "author": row[BOOK_TABLE_AUTHOR_COL_INDEX]} for row in self.DbCursor.fetchall()]
+        Books = [
+            {"title"    : row[BOOK_TABLE_TITLE_COL_INDEX], 
+             "author"   : row[BOOK_TABLE_AUTHOR_COL_INDEX],
+             "genre"    : row[BOOK_TABLE_GENRE_COL_INDEX],
+             "isread"   : row[BOOK_TABLE_IS_READ_COL_INDEX],
+             "dateread" : row[BOOK_TABLE_DATE_READ_COL_INDEX],
+             "rating"   : row[BOOK_TABLE_RATING_COL_INDEX]} 
+            for row in self.DbCursor.fetchall()
+        ]
         
         # Re-Format List to JSON
-        return json.dumps(books)  # Send book list to frontend               
+        return json.dumps(Books)  # Send book list to frontend               
 
     def SearchJs (self, BookJsonData):
         # Convert the book data in JSON format to a python dictionary
@@ -99,11 +113,19 @@ class HomeLibraryApi:
         BookTitle = BookDictData['title']
         
         # Query for Book Data
-        self.DbCursor.execute("SELECT title, author FROM book")
+        self.DbCursor.execute("SELECT title, author, genre, isread, dateread, rating FROM book")
         
         # Organize table into python list of dicts
-        Books = [{"title": row[BOOK_TABLE_TITLE_COL_INDEX], "author": row[BOOK_TABLE_AUTHOR_COL_INDEX]} for row in self.DbCursor.fetchall()]
-        
+        Books = [
+            {"title"    : row[BOOK_TABLE_TITLE_COL_INDEX], 
+             "author"   : row[BOOK_TABLE_AUTHOR_COL_INDEX],
+             "genre"    : row[BOOK_TABLE_GENRE_COL_INDEX],
+             "isread"  : row[BOOK_TABLE_IS_READ_COL_INDEX],
+             "date_read": row[BOOK_TABLE_DATE_READ_COL_INDEX],
+             "rating"   : row[BOOK_TABLE_RATING_COL_INDEX]} 
+            for row in self.DbCursor.fetchall()
+        ]
+                
         # Search for book data based on title.
         Result = None
         for book in Books:
@@ -116,7 +138,7 @@ class HomeLibraryApi:
         return json.dumps(Result)  # Send book list to frontend     
                 
 if __name__ == "__main__":
-    # # Instantiate Backend API Class
+    # Instantiate Backend API Class
     LibraryFrontend = HomeLibraryApi ()
     LibraryFrontend.CreateBookTable ()
     

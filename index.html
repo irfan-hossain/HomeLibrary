@@ -127,11 +127,46 @@
 <body>
     <div class="sidenav">
         <h1>W E L C O M E &nbsp; T O &nbsp; Y O U R <br>  H O M E &nbsp; L I B R A R Y</h1>
-        <input type="text" id="title" placeholder="Enter Book Title">
+        <input type="text" id="title"  placeholder="Enter Book Title">
         <input type="text" id="author" placeholder="Enter Author Name">
-        <input type="text" id="genre" placeholder="DISABLED - Enter Genre" disabled>
-        <input type="text" id="dateread" placeholder="DISABLED - Enter Date Read" disabled>
-        
+
+        <input list="genre_options" id="genre" placeholder="Select Genre"/></label>
+        <datalist id="genre_options" name="genre_options">
+          <option value="Fiction - Literature">
+          <option value="Fiction - Science Fiction">
+          <option value="Fiction - Fantasy"></option>
+          <option value="Fiction - Historical Fiction"></option>
+          <option value="Fiction - Classic"></option>
+          <option value="Fiction - Poetry"></option>
+          <option value="Fiction - Horror"></option>
+          <option value="Fiction - Romance"></option>
+          <option value="Fiction - Mystery"></option>
+          <option value="Non Fiction - Biography"></option>
+          <option value="Non Fiction - Autobiography"></option>
+          <option value="Non Fiction - History"></option>
+          <option value="Non Fiction - Psychology"></option>
+          <option value="Non Fiction - Medicine"></option>
+          <option value="Non Fiction - Cooking"></option>
+          <option value="Non Fiction - Home and Gardening"></option>
+        </datalist>
+
+        <input list="is_read_options" id="isread" placeholder="Select if Book Has Been Read"/></label>
+        <datalist id="is_read_options" name="is_read_options">
+          <option value="No">
+          <option value="Yes">
+        </datalist>
+
+        <input type="date" id="dateread" placeholder="Enter Date Read (optional)">
+
+        <input list="rating_options" id="rating" placeholder="Select Rating (optional)"/></label>
+        <datalist id="rating_options" name="rating_options">
+          <option value="1">
+          <option value="2">
+          <option value="3">
+          <option value="4">
+          <option value="5">
+        </datalist>
+
         <add-button onclick="SubmitBook();ClearFields();">Add Book</add-button> 
         <delete-button onclick="RemoveBook();ClearFields();">Remove Book</delete-button>   
     </div>
@@ -151,12 +186,16 @@
         function SubmitBook() {
             let title = document.getElementById("title").value;
             let author = document.getElementById("author").value;
+            let genre = document.getElementById("genre").value;
+            let isread = document.getElementById("isread").value;
+            let dateread = document.getElementById("dateread").value;
+            let rating = document.getElementById("rating").value;
 
-            if (title && author) {
-                let bookData = JSON.stringify({ title: title, author: author });
+            if (title && author && genre && isread) {
+                let bookData = JSON.stringify({ title: title, author: author, genre: genre, isread: isread, dateread: dateread, rating: rating});
                 pywebview.api.AddBookToTableJs(bookData).then(UpdateBookList);
             } else {
-                alert("Please enter both Title and Author.");
+                alert("Please enter at least Title, Author, Genre, and Read Status.");
             }
         }
 
@@ -178,34 +217,42 @@
             JSON.parse(bookList).forEach(book => {
                 let li = document.createElement("li");
                 li.setAttribute('style', 'white-space: pre;');
-                li.textContent = `📖 ${book.title} \r\n`;
-                li.textContent += `✍️ ${book.author}\r\n`;
-                listElement.appendChild(li);
+                
+                li.textContent = `Title: \t\t ${book.title} \r\n`;
+                li.textContent += `Author: \t\t ${book.author}\r\n`;
+                li.textContent += `Genre: \t\t ${book.genre}\r\n`;
+                li.textContent += `Read: \t\t ${book.isread}\r\n`;
+                li.textContent += `Date Read: \t\t ${book.dateread}\r\n`;
+                li.textContent += `Rating: \t\t ${book.rating}\r\n`;
+
+                listElement.prepend(li);
             });
         }
 
         function ClearFields() {
             document.getElementById("title").value = "";
             document.getElementById("author").value = "";
-       }
+            document.getElementById("genre").value = null;
+            document.getElementById("isread").value = null;
+            document.getElementById("dateread").value = null;
+            document.getElementById("rating").value = null;
+        }
 
-       function RefreshList (){
-        pywebview.api.GetListofBooksJs().then(UpdateBookList);
-       }
+       function RefreshList () {
+            pywebview.api.GetListofBooksJs().then(UpdateBookList);
+        }
 
-       function SearchForBook (){
-        let title = document.getElementById("search-bar").value;
-        let bookData = JSON.stringify({ title: title });
-        pywebview.api.SearchJs(bookData).then(UpdateBookList);
-       }
+       function SearchForBook () {
+            let title = document.getElementById("search-bar").value;
+            let bookData = JSON.stringify({ title: title });
+            pywebview.api.SearchJs(bookData).then(UpdateBookList);
+        }
 
         // Load books from database when UI loads
         window.setTimeout (
             function() {
                 pywebview.api.GetListofBooksJs().then(UpdateBookList);
-            }, 
-            100)
-        ;
+            }, 100);
 
     </script>
 
