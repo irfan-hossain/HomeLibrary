@@ -6,16 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Library Catalog</title>
     <style>
+        /* OVERALL FORMATTING */
+        body { 
+            font-family: Inter, sans-serif; 
+            background-color: #ffffff; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+        }
 
+        /* CONTAINER AREAS */
         .sidenav {
-            height: 100%; /* Full-height: remove this if you want "auto" height */
-            width: 326px; /* Set the width of the sidebar */
-            position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-            z-index: 1; /* Stay on top */
-            top: 0; /* Stay at the top */
+            height: 100%; 
+            width: 326px; 
+            position: fixed; 
+            z-index: 1; 
+            top: 0; 
             left: 0;
-            background-color: #9CAEA9; /* Black */
-            overflow-x: hidden; /* Disable horizontal scroll */
+            background-color: #9CAEA9;
+            overflow-x: hidden;
             padding-top: 20px;
         }
 
@@ -36,29 +47,27 @@
 
         .book-table-cotainer {
             background-color: #ffffff; 
-            height: 100%;
+            height: auto;
             width: 100%;
             display: flex; 
             justify-content: center;
         }
 
-        body { 
-            font-family: Inter, sans-serif; 
-            background-color: #ffffff; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh;
-        }
-
+        /* Heading Formatting*/
         h1 { text-align: center; 
             color: white; 
             font-size: 14px; 
-            padding: 20px; 
-            margin-bottom: 60px;
+            padding-top: 20px; 
+            margin-top: 10px;
         } 
 
+        h2 { text-align: center; 
+            color: white; 
+            font-size: 12px; 
+            padding-bottom: 30px;
+        } 
+
+        /* RE-USABLE ASSETS (INPUT FIELDS AND BUTTONS) */
         input { 
             width: 80%; 
             padding: 8px; 
@@ -118,18 +127,50 @@
         }
         delete-button:hover { background-color: #988787; }
 
-        .book-list { list-style: none; padding: 10;}
-        .book-list li { background: #fff; padding: 10px; margin: 5px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);}
+        /* HTML CSS TABLE FORMATTING  */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 50px;
+            font-family: Inter, sans-serif; 
+        } /* for table structure*/
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        } /* attributes common to table header (th) and table data (td) */
+
+        th {
+            background-color: #9CAEA9;
+            color: white;
+            border-bottom: 2px solid #ffffff;
+        } /* attributes specific to table header */
+        th:hover { background-color: #CCDAD1; }
+
+        td {   
+            font-size: 12px; /* Reduce font size if needed */
+            background-color: #CCDAD1;
+            border-bottom: 2px solid #ffffff;
+        } /* attributes specific to table data */
+
+        tr:hover td { background-color: #FFFF; }
+
     </style>
 
 </head>
 
 <body>
+    <!-- Sidebar Container for Adding and Removing Books -->
     <div class="sidenav">
+        <!-- Welcome Text -->
         <h1>W E L C O M E &nbsp; T O &nbsp; Y O U R <br>  H O M E &nbsp; L I B R A R Y</h1>
-        <input type="text" id="title"  placeholder="Enter Book Title">
-        <input type="text" id="author" placeholder="Enter Author Name">
+        <h2>Book Count: <span id="bookCount"></span></h2>
 
+        <!-- Title Input -->
+        <input type="text" id="title"  placeholder="Enter Book Title">
+        <!-- Author Input -->
+        <input type="text" id="author" placeholder="Enter Author Name">
+        <!-- Genre Input -->
         <input list="genre_options" id="genre" placeholder="Select Genre"/></label>
         <datalist id="genre_options" name="genre_options">
           <option value="Fiction - Literature">
@@ -149,15 +190,15 @@
           <option value="Non Fiction - Cooking"></option>
           <option value="Non Fiction - Home and Gardening"></option>
         </datalist>
-
+        <!-- Read Status Input -->
         <input list="is_read_options" id="isread" placeholder="Select if Book Has Been Read"/></label>
         <datalist id="is_read_options" name="is_read_options">
           <option value="No">
           <option value="Yes">
         </datalist>
-
+        <!-- Date Read Input -->
         <input type="date" id="dateread" placeholder="Enter Date Read (optional)">
-
+        <!-- Rating Input -->
         <input list="rating_options" id="rating" placeholder="Select Rating (optional)"/></label>
         <datalist id="rating_options" name="rating_options">
           <option value="1">
@@ -167,22 +208,53 @@
           <option value="5">
         </datalist>
 
+        <!-- Action Buttons Input -->
         <add-button onclick="SubmitBook();ClearFields();">Add Book</add-button> 
+        <add-button onclick="RefreshTable();ClearFields();">Refresh List</add-button> 
         <delete-button onclick="RemoveBook();ClearFields();">Remove Book</delete-button>   
     </div>
     
+    <!-- Container for Main Content -->
     <div class="main">
+        <!-- Sub-Container for Search Bar and Button -->
         <div class="search-bar-container">
             <input type="text" id="search-bar" placeholder="Enter book information to search...">
             <search-button onclick="SearchForBook();ClearFields();">Go</search-button>    
         </div>
 
+        <!-- Sub-Container for to Display Table of Books -->
         <div class="book-table-cotainer">
-            <ul id="book-list" class="book-list"></ul>
+            <table>
+                <!-- Table Header -->
+                <thead> 
+                    <tr>
+                        <th onclick="SortTableByColumnHeaderNonNumerical(0)">Title</th>
+                        <th onclick="SortTableByColumnHeaderNonNumerical(1)">Author</th>
+                        <th onclick="SortTableByColumnHeaderNonNumerical(2)">Genre</th>
+                        <th onclick="SortTableByColumnHeaderNonNumerical(3)">Read Status</th>
+                        <th onclick="SortTableByColumnHeaderNonNumerical(4)">Date Read</th>
+                        <th onclick="SortTableByColumnHeaderNumeric(5)">Rating</th>
+                    </tr>
+                </thead>
+                <!-- Table Body -->
+                <tbody id="table-body">
+                   <!-- Rows are inserted here by ConstructTable () -->
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script>
+        //
+        // Load books from database when UI loads
+        //
+        window.setTimeout (
+            function() {pywebview.api.GetListofBooksJs().then(ConstructTable);}, 100
+        );
+
+        //
+        // Button OnClick Action Functions
+        //
         function SubmitBook() {
             let title = document.getElementById("title").value;
             let author = document.getElementById("author").value;
@@ -193,7 +265,7 @@
 
             if (title && author && genre && isread) {
                 let bookData = JSON.stringify({ title: title, author: author, genre: genre, isread: isread, dateread: dateread, rating: rating});
-                pywebview.api.AddBookToTableJs(bookData).then(UpdateBookList);
+                pywebview.api.AddBookToTableJs(bookData).then(ConstructTable);
             } else {
                 alert("Please enter at least Title, Author, Genre, and Read Status.");
             }
@@ -204,29 +276,20 @@
 
             if (title) {
                 let bookData = JSON.stringify({ title: title });
-                pywebview.api.RemoveBookFromTableJs(bookData).then(UpdateBookList);
+                pywebview.api.RemoveBookFromTableJs(bookData).then(ConstructTable);
             } else {
                 alert("Please enter Title");
             }
         }
 
-        function UpdateBookList(bookList) {
-            let listElement = document.getElementById("book-list");
-            listElement.innerHTML = "";
-            
-            JSON.parse(bookList).forEach(book => {
-                let li = document.createElement("li");
-                li.setAttribute('style', 'white-space: pre;');
-                
-                li.textContent = `Title: \t\t ${book.title} \r\n`;
-                li.textContent += `Author: \t\t ${book.author}\r\n`;
-                li.textContent += `Genre: \t\t ${book.genre}\r\n`;
-                li.textContent += `Read: \t\t ${book.isread}\r\n`;
-                li.textContent += `Date Read: \t\t ${book.dateread}\r\n`;
-                li.textContent += `Rating: \t\t ${book.rating}\r\n`;
+        function SearchForBook () {
+            let search_string = document.getElementById("search-bar").value;
+            let bookData = JSON.stringify({ title: title });
+            pywebview.api.SearchJs(bookData, search_string).then(ConstructTable);
+        }
 
-                listElement.prepend(li);
-            });
+        function RefreshTable () {
+            pywebview.api.GetListofBooksJs().then(ConstructTable);
         }
 
         function ClearFields() {
@@ -236,24 +299,86 @@
             document.getElementById("isread").value = null;
             document.getElementById("dateread").value = null;
             document.getElementById("rating").value = null;
+            document.getElementById("search-bar").value = null;
         }
 
-       function RefreshList () {
-            pywebview.api.GetListofBooksJs().then(UpdateBookList);
+        //
+        // Table Manipulation Functions
+        //
+        function ConstructTable(bookList) {
+            let tableBody = document.getElementById("table-body");
+            tableBody.innerHTML = "";
+            bookCountNum = 0;
+            
+            // For each book in the list create a row and append the row
+            // to the html table above
+            JSON.parse(bookList).forEach(book => {
+                let row = `<tr>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.genre}</td>
+                    <td>${book.isread}</td>
+                    <td>${book.dateread}</td>
+                    <td>${book.rating}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+                bookCountNum++
+            });
+
+            document.getElementById("bookCount").innerHTML = bookCountNum;
         }
 
-       function SearchForBook () {
-            let title = document.getElementById("search-bar").value;
-            let bookData = JSON.stringify({ title: title });
-            pywebview.api.SearchJs(bookData).then(UpdateBookList);
+        var IsAcsending = true;
+
+        function SortTableByColumnHeaderNumeric(columnIndex) {
+            // Get table 
+            let table = document.getElementById("table-body");
+
+            // Convert table to array
+            let rows = Array.from(table.rows).slice(0);
+
+            // Sort array basd on comparison function
+            rows.sort( (rowA, rowB) => {
+                    // Extract data from cell and convert to number for comparison
+                    let cellA = Number(rowA.cells[columnIndex].textContent.trim());
+                    let cellB = Number(rowB.cells[columnIndex].textContent.trim());
+
+                    return cellB - cellA;
+                }    
+            );
+
+            // For each row in array append the row in the sorted
+            // order back to the table
+            rows.forEach(row => table.appendChild(row)); 
         }
 
-        // Load books from database when UI loads
-        window.setTimeout (
-            function() {
-                pywebview.api.GetListofBooksJs().then(UpdateBookList);
-            }, 100);
+        function SortTableByColumnHeaderNonNumerical (columnIndex) {
+            // Get table 
+            let table = document.getElementById("table-body");
 
+            // Convert table to array
+            let rows = Array.from(table.rows).slice(0);
+
+            // Sort array basd on comparison function
+            rows.sort( (rowA, rowB) => {
+                    // Extract data from cell
+                    let cellA = rowA.cells[columnIndex].textContent.trim();
+                    let cellB = rowB.cells[columnIndex].textContent.trim();
+                    
+                    if ((columnIndex == 0) || (columnIndex == 1))  {
+                        // For title and author I want A-Z
+                        return cellA.localeCompare(cellB);
+                    } else {
+                        return cellB.localeCompare(cellA);
+                    }
+                    
+                }    
+            );
+
+            // For each row in array append the row in the sorted
+            // order back to the table
+            rows.forEach(row => table.appendChild(row)); 
+        }
     </script>
 
 </body>

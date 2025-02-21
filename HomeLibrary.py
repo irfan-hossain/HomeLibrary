@@ -105,7 +105,7 @@ class HomeLibraryApi:
         # Re-Format List to JSON
         return json.dumps(Books)  # Send book list to frontend               
 
-    def SearchJs (self, BookJsonData):
+    def SearchJs (self, BookJsonData, SearchString):
         # Convert the book data in JSON format to a python dictionary
         BookDictData = json.loads (BookJsonData)
 
@@ -113,29 +113,24 @@ class HomeLibraryApi:
         BookTitle = BookDictData['title']
         
         # Query for Book Data
-        self.DbCursor.execute("SELECT title, author, genre, isread, dateread, rating FROM book")
+        self.DbCursor.execute(
+            "SELECT * FROM book WHERE title LIKE ? OR author LIKE ? OR genre LIKE ? OR isread LIKE ? OR dateread LIKE ? OR rating LIKE ?",
+            ('%' + SearchString + '%', '%' + SearchString + '%', '%' + SearchString + '%', '%' + SearchString + '%', '%' + SearchString + '%', '%' + SearchString + '%')
+        )
         
         # Organize table into python list of dicts
         Books = [
             {"title"    : row[BOOK_TABLE_TITLE_COL_INDEX], 
              "author"   : row[BOOK_TABLE_AUTHOR_COL_INDEX],
              "genre"    : row[BOOK_TABLE_GENRE_COL_INDEX],
-             "isread"  : row[BOOK_TABLE_IS_READ_COL_INDEX],
-             "date_read": row[BOOK_TABLE_DATE_READ_COL_INDEX],
+             "isread"   : row[BOOK_TABLE_IS_READ_COL_INDEX],
+             "dateread": row[BOOK_TABLE_DATE_READ_COL_INDEX],
              "rating"   : row[BOOK_TABLE_RATING_COL_INDEX]} 
             for row in self.DbCursor.fetchall()
         ]
-                
-        # Search for book data based on title.
-        Result = None
-        for book in Books:
-            if book['title'] == BookTitle:
-                print ("found", BookTitle)
-                Result = [book]
-                break;
 
         # Return book data as only element in list
-        return json.dumps(Result)  # Send book list to frontend     
+        return json.dumps(Books)  # Send book list to frontend     
                 
 if __name__ == "__main__":
     # Instantiate Backend API Class
